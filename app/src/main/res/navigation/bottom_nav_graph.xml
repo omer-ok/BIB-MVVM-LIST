@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.cristopher.mauratzjarl.ui.homeActivity.fragmentThree.threeFragment"
+        android:label="three_fragment"
+        tools:layout="@layout/three_fragment" />
+    <fragment
+        android:id="@+id/navigation_leader"
+        android:name="com.cristopher.mauratzjarl.ui.homeActivity.fragmentTwo.twoFragment"
+        android:label="two_fragment"
+        tools:layout="@layout/two_fragment" />
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.cristopher.mauratzjarl.ui.homeActivity.fragmentOne.oneFragment"
+        android:label="one_fragment"
+        tools:layout="@layout/one_fragment" />
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.cristopher.mauratzjarl.ui.homeActivity.fragmentFour.fourFragment"
+        android:label="four_fragment"
+        tools:layout="@layout/four_fragment" />
+</navigation>
