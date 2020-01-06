@@ -6,10 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.cristopher.mauratzjarl.Utilz.ApiException
 import com.cristopher.mauratzjarl.Utilz.Coroutines
 import com.cristopher.mauratzjarl.Utilz.NoInternetException
+import com.cristopher.mauratzjarl.Utilz.genericCastOrNull
+import com.cristopher.mauratzjarl.data.db.entities.User
 import com.cristopher.mauratzjarl.data.repositories.UserRepository
 import com.cristopher.mauratzjarl.ui.homeActivity.MainNavigationActivity
-import androidx.databinding.ObservableBoolean
-import com.cristopher.mauratzjarl.animation.ViewBusyBindings
+
 
 
 class  AuthViewModel(
@@ -23,9 +24,6 @@ class  AuthViewModel(
     var AuthListener : AuthListener?=null
     fun getLoggedInUser() = repository.getUser()
 
-    //var isBusy = ObservableBoolean(true)
-
-
     fun LoginOnClick(view:View){
 
         if(!email.isNullOrEmpty() && password.isNullOrEmpty()){
@@ -36,25 +34,24 @@ class  AuthViewModel(
         }else{
             AuthListener?.onStarted()
             if(email.isNullOrEmpty() || password.isNullOrEmpty()){
-
                 AuthListener?.onFailed("Invalid Password")
                 return
             }
-            Coroutines.main {
+
+            AuthListener?.onSucess()
+            /*Coroutines.main {
                 try {
                     val authResponse = repository.userLogin(email!!,password!!)
-                    authResponse.result?.user?.let {
-                        AuthListener?.onSucess(it)
-                        repository.saveUser(it)
+                    authResponse.result?.let {
+                        //AuthListener?.onSucess(genericCastOrNull<User>(it))
+                        genericCastOrNull<User>(it)?.let { it1 -> repository.saveUser(it1) }
                         return@main
                     }
                     AuthListener?.onFailed(authResponse.message!!)
                 }catch (e : ApiException){AuthListener?.onFailed(e.message!!)
                 }catch (e : NoInternetException){AuthListener?.onFailed(e.message!!)}
-
-            }
+            }*/
         }
-
     }
 
 

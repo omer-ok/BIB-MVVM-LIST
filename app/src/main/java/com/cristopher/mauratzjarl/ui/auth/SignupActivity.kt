@@ -105,7 +105,7 @@ class SignupActivity : AppCompatActivity(), AuthListener, KodeinAware {
         progress_bar.show()
     }
 
-    override fun onSucess(user: User) {
+    override fun onSucess() {
         progress_bar.hide()
         val intent = Intent(this, MainNavigationActivity::class.java)
         startActivity(intent)

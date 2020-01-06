@@ -6,6 +6,7 @@ import com.cristopher.mauratzjarl.data.db.entities.AppDatabase
 import com.cristopher.mauratzjarl.data.db.entities.User
 import com.cristopher.mauratzjarl.data.network.Api
 import com.cristopher.mauratzjarl.data.network.responces.AuthResponce
+import com.cristopher.mauratzjarl.data.network.responces.ResultResponce
 import com.cristopher.mauratzjarl.data.network.responces.SafeApiRequest
 
 
@@ -14,7 +15,7 @@ class UserRepository(
     private val db : AppDatabase
 ) : SafeApiRequest(){
 
-  suspend fun userLogin(email:String ,password :String ): AuthResponce {
+  suspend fun userLogin(email:String ,password :String ): AuthResponce<User?> {
 
         return apiRequest{api.userLogin(email,password)}
 
@@ -24,7 +25,7 @@ class UserRepository(
         name: String,
         email: String,
         password: String
-    ) : AuthResponce {
+    ) : AuthResponce<User?> {
         return apiRequest{ api.userSignup(name, email, password)}
     }
 
@@ -33,6 +34,7 @@ class UserRepository(
     fun getUser() = db.getUserDao().getUser()
 
     fun logoutUser() = db.getUserDao().logoutUser()
+
 
     }
 

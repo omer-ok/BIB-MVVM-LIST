@@ -44,16 +44,6 @@ class SplashActivity : AppCompatActivity() , KodeinAware {
         val View = findViewById(R.id.view) as View
         val imageView = findViewById(R.id.imageView) as ImageView
 
-
-        /* fadeOut(logoView)
-                   .andThen(scaleTo(imageView, 0F))
-                   .andThen(scaleTo(imageView, 0F))
-                   .andThen(scaleTo(imageView, 1F))
-                   .subscribe()*/
-
-     /*   scaleTo(imageView, 0F)
-            .andThen(scaleTo(imageView, 1F,500))
-            .subscribe()*/
         fadeOut(rootView,0)
             .andThen(scaleTo(imageView, 0F))
             .andThen(

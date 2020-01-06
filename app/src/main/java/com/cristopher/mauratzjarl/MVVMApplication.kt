@@ -4,8 +4,10 @@ import android.app.Application
 import com.cristopher.mauratzjarl.data.db.entities.AppDatabase
 import com.cristopher.mauratzjarl.data.network.Api
 import com.cristopher.mauratzjarl.data.network.responces.NetworkConnectionInterceptor
+import com.cristopher.mauratzjarl.data.repositories.ListRepository
 import com.cristopher.mauratzjarl.data.repositories.UserRepository
 import com.cristopher.mauratzjarl.ui.auth.AuthViewModelFactory
+import com.cristopher.mauratzjarl.ui.homeActivity.fragmentOne.OneViewModelFactory
 import com.cristopher.mauratzjarl.ui.splash.SplashViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -24,9 +26,10 @@ class MVVMApplication :Application(),KodeinAware {
         bind() from singleton { Api(instance()) }
         bind() from singleton { AppDatabase(instance()) }
         bind() from singleton { UserRepository(instance(),instance()) }
+        bind() from singleton { ListRepository(instance(),instance()) }
         bind() from provider { SplashViewModelFactory(instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
-
+        bind() from provider { OneViewModelFactory(instance()) }
 
     }
 }

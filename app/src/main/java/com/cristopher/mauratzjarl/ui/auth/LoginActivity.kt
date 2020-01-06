@@ -1,24 +1,20 @@
 package com.cristopher.mauratzjarl.ui.auth
 
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
-import android.view.KeyEvent
-import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.cristopher.mauratzjarl.R
-import com.cristopher.mauratzjarl.Utilz.*
+import com.cristopher.mauratzjarl.Utilz.KeyboardEventListener
+import com.cristopher.mauratzjarl.Utilz.hide
+import com.cristopher.mauratzjarl.Utilz.show
+import com.cristopher.mauratzjarl.Utilz.snackbar
 import com.cristopher.mauratzjarl.data.db.entities.User
 import com.cristopher.mauratzjarl.databinding.ActivityLoginBinding
 import com.cristopher.mauratzjarl.ui.homeActivity.MainNavigationActivity
@@ -127,7 +123,6 @@ class LoginActivity  : AppCompatActivity(), AuthListener,KodeinAware{
                         scaleTo(passwordView,0F),translateTo(switch,0F,0F)
                     ))
                     .subscribe()
-                //passwordView.visibility  = View.GONE
             }
 
         }
@@ -173,7 +168,7 @@ class LoginActivity  : AppCompatActivity(), AuthListener,KodeinAware{
         progress_bar.show()
     }
 
-    override fun onSucess(user: User) {
+    override fun onSucess() {
         progress_bar.hide()
         val intent = Intent(this, MainNavigationActivity::class.java)
         startActivity(intent)

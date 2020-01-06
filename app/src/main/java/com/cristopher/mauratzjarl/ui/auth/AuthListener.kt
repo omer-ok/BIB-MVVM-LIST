@@ -4,8 +4,8 @@ import com.cristopher.mauratzjarl.data.db.entities.User
 
 interface AuthListener {
     fun onStarted()
-    fun onSucess(user: User)
+    //fun onSucess(user: User?)
+    fun onSucess()
     fun onFailed(message:String)
-
     fun onSucessSignUp()
 }
